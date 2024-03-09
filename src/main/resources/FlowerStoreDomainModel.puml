@@ -1,0 +1,54 @@
+@startuml FlowerStoreDomainModel
+
+!define Entity(entity) class entity <<(E,orchid)>> #orchid
+!define ValueObject(vo) class vo <<(V,LightBlue)>> #LightBlue
+!define AggregateRoot(ar) class ar <<(A,#FF7700)>> #FF7700
+
+namespace InventoryManagement {
+    Entity(Flower)
+    ValueObject(Price)
+    ValueObject(StockQuantity)
+    AggregateRoot(Category) {
+        Flower
+        Price
+        StockQuantity
+    }
+}
+
+namespace OrderProcessing {
+    Entity(Order)
+    Entity(OrderItem)
+    ValueObject(OrderStatus)
+    ValueObject(PaymentDetails)
+    AggregateRoot(Order) {
+        OrderItem
+        OrderStatus
+        PaymentDetails
+    }
+}
+
+namespace CustomerManagement {
+    Entity(Customer)
+    Entity(Address)
+    ValueObject(Email)
+    ValueObject(PhoneNumber)
+    AggregateRoot(Customer) {
+        Address
+        Email
+        PhoneNumber
+    }
+}
+
+namespace DeliveryServices {
+    Entity(Delivery)
+    Entity(Vehicle)
+    ValueObject(DeliverySlot)
+    ValueObject(TrackingInfo)
+    AggregateRoot(Delivery) {
+        Vehicle
+        DeliverySlot
+        TrackingInfo
+    }
+}
+
+@enduml
