@@ -20,7 +20,7 @@ public class Product {
     private Long id; // Private identifier
 
     @Embedded
-    private ProductIdentifier productIdentifier;
+    private ProductIdentifier productIdentifier; // Public identifier
 
     @NotBlank(message = "Product name cannot be blank")
     private String name;
