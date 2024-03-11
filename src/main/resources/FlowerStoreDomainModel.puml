@@ -27,7 +27,7 @@ namespace OrderProcessing {
     }
 }
 
-namespace CustomerManagement {
+namespace CustomerRelations {
     Entity(Customer)
     Entity(Address)
     ValueObject(Email)
