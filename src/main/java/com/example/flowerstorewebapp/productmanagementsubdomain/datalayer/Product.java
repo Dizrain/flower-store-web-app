@@ -17,7 +17,10 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // Private identifier
+
+    @Embedded
+    private ProductIdentifier productIdentifier;
 
     @NotBlank(message = "Product name cannot be blank")
     private String name;
