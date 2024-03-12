@@ -1,6 +1,5 @@
 package com.example.flowerstorewebapp.orderprocessingsubdomain.datalayer;
 
-import com.example.flowerstorewebapp.productmanagementsubdomain.datalayer.ProductIdentifier;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
