@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CustomerResponseMapper {
 
-    @Mapping(source = "id", target = "customerId")
+    @Mapping(expression = "java(customer.getCustomerIdentifier().getCustomerId())", target = "customerId")
     CustomerResponseModel entityToResponseModel(Customer customer);
 
     List<CustomerResponseModel> entityListToResponseModelList(List<Customer> customers);
