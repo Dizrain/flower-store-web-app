@@ -10,7 +10,5 @@ import org.mapstruct.Mapping;
 public interface ProductRequestMapper {
 
     @Mapping(target = "id", ignore = true)
-//    @Mapping(source = "categoryName", target = "category")
-//    @Mapping(source = "priceValue", target = "price")
     Product requestModelToEntity(ProductRequestModel productRequestModel, ProductIdentifier productIdentifier);
 }

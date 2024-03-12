@@ -24,8 +24,7 @@ public class OrderResponseModel extends RepresentationModel<OrderResponseModel> 
     @NoArgsConstructor
     public static class OrderItemModel extends RepresentationModel<OrderResponseModel> {
         String productId;
-        String name; // Assuming we also want to include the product name, not just ID
         int quantity;
-        double pricePerItem;
+        double pricePerItem; // TODO: Add from product
     }
 }
