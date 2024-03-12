@@ -37,9 +37,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponseModel getProductById(String productId) {
-        Long id = Long.parseLong(productId);
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Product not found with id " + id));
+        Product product = productRepository.findProductByProductIdentifier_ProductId(productId)
+                .orElseThrow(() -> new NotFoundException("Product not found with id " + productId));
         return productResponseMapper.entityToResponseModel(product);
     }
 
@@ -70,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponseModel> getProductsByCategory(String category) {
-        List<Product> products = productRepository.findAllByCategory_Name(category);
+        List<Product> products = productRepository.findAllByCategory(category);
         return productResponseMapper.entityListToResponseModelList(products);
     }
 }

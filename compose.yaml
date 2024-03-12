@@ -35,12 +35,12 @@ services:
       retries: 10
   phpmyadmin:
     image: phpmyadmin:5.2.0
-    container_name: PhpMyAdmin
+    container_name: FlowersPhpMyAdmin
     links:
       - mysql_server
     restart: always
     ports:
-      - 5013:80
+      - 5014:80
     environment:
       - PMA_ARBITRARY=1
 

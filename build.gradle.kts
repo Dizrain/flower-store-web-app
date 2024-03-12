@@ -25,7 +25,6 @@ extra["springModulithVersion"] = "1.1.2"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-hateoas")
     implementation("org.springframework.boot:spring-boot-starter-integration")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -33,11 +32,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.integration:spring-integration-http")
     implementation("org.springframework.integration:spring-integration-jpa")
-    implementation("org.springframework.integration:spring-integration-mongodb")
     implementation("org.springframework.integration:spring-integration-webflux")
     implementation("org.springframework.modulith:spring-modulith-starter-core")
     implementation("org.springframework.modulith:spring-modulith-starter-jpa")
-    implementation("org.springframework.modulith:spring-modulith-starter-mongodb")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
@@ -51,7 +48,6 @@ dependencies {
     testImplementation("org.springframework.integration:spring-integration-test")
     testImplementation("org.springframework.modulith:spring-modulith-starter-test")
     testImplementation("org.testcontainers:junit-jupiter")
-    testImplementation("org.testcontainers:mongodb")
     testImplementation("org.testcontainers:mysql")
     testImplementation("org.testcontainers:postgresql")
     // https://mvnrepository.com/artifact/org.mapstruct/mapstruct

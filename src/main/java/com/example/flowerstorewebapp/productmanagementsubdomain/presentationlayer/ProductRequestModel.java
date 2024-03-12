@@ -15,6 +15,6 @@ public class ProductRequestModel {
     String name;
     String description;
     String categoryId; // Assuming category is referenced by ID
-    String categoryName;
-    BigDecimal priceValue; // Assuming price as a simple numeric value for this example
+    String category;
+    BigDecimal price; // Assuming price as a simple numeric value for this example
 }
