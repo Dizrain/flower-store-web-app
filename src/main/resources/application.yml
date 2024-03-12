@@ -59,3 +59,7 @@ spring:
     init:
       platform: h2
       mode: always
+  modulith:
+    events:
+      jdbc-schema-initialization:
+        enabled: true
