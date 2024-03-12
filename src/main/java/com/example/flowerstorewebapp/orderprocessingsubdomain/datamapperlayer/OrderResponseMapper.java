@@ -17,7 +17,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Mapper(componentModel = "spring")
 public interface OrderResponseMapper {
 
-    @Mapping(expression = "java(order.getIdentifier().getOrderId())", target = "orderId")
+    @Mapping(expression = "java(order.getOrderIdentifier().getOrderId())", target = "orderId")
     OrderResponseModel entityToResponseModel(Order order);
 
     List<OrderResponseModel> entityListToResponseModelList(List<Order> orders);
