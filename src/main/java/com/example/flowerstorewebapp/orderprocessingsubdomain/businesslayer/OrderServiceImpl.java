@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void cancelOrder(String orderId) {
-        Order order = orderRepository.findById(orderId)
+        Order order = orderRepository.findOrderByOrderIdentifier_OrderId(orderId)
                 .orElseThrow(() -> new NotFoundException("Order not found with id: " + orderId));
         order.setStatus(OrderStatus.CANCELLED); // Update status instead of deleting
         orderRepository.save(order); // Save the updated order
