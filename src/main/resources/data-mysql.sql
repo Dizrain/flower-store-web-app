@@ -26,16 +26,16 @@ VALUES ('Roses'),
 
 -- Inserting sample data into orders
 INSERT INTO orders (order_id, billing_information, customer_id, shipping_address, status)
-VALUES (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Alice Brown'), '123 Maple Street', 'Shipped'),
-       (UUID(), 'Paid via PayPal', (SELECT customer_id FROM customers WHERE name = 'Bob Smith'), '456 Oak Street', 'Processing'),
-       (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Carol Jones'), '789 Pine Street', 'Delivered'),
-       (UUID(), 'Paid via Debit Card', (SELECT customer_id FROM customers WHERE name = 'David Wilson'), '101 Birch Street', 'Cancelled'),
-       (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Eva Black'), '234 Cedar Street', 'Shipped'),
-       (UUID(), 'Paid via PayPal', (SELECT customer_id FROM customers WHERE name = 'Frank White'), '567 Spruce Street', 'Processing'),
-       (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Grace Hall'), '890 Ash Street', 'Delivered'),
-       (UUID(), 'Paid via Debit Card', (SELECT customer_id FROM customers WHERE name = 'Henry Green'), '123 Walnut Street', 'Cancelled'),
-       (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Isla Young'), '456 Cherry Street', 'Shipped'),
-       (UUID(), 'Paid via PayPal', (SELECT customer_id FROM customers WHERE name = 'Jack King'), '789 Elm Street', 'Processing');
+VALUES (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Alice Brown'), '123 Maple Street', 'SHIPPED'),
+       (UUID(), 'Paid via PayPal', (SELECT customer_id FROM customers WHERE name = 'Bob Smith'), '456 Oak Street', 'PLACED'),
+       (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Carol Jones'), '789 Pine Street', 'DELIVERED'),
+       (UUID(), 'Paid via Debit Card', (SELECT customer_id FROM customers WHERE name = 'David Wilson'), '101 Birch Street', 'CANCELLED'),
+       (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Eva Black'), '234 Cedar Street', 'SHIPPED'),
+       (UUID(), 'Paid via PayPal', (SELECT customer_id FROM customers WHERE name = 'Frank White'), '567 Spruce Street', 'PLACED'),
+       (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Grace Hall'), '890 Ash Street', 'DELIVERED'),
+       (UUID(), 'Paid via Debit Card', (SELECT customer_id FROM customers WHERE name = 'Henry Green'), '123 Walnut Street', 'CANCELLED'),
+       (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Isla Young'), '456 Cherry Street', 'SHIPPED'),
+       (UUID(), 'Paid via PayPal', (SELECT customer_id FROM customers WHERE name = 'Jack King'), '789 Elm Street', 'PLACED');
 
 -- Inserting sample data into products with category_id references
 INSERT INTO products (product_id, name, description, price, category_id)
