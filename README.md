@@ -5,6 +5,9 @@
 - I am encountering an error after inserting more sample data into the database. Removing some of the inserts didn't
   help. Swagger files aren't yet created because the project stopped running.
 
+- Postman: "Categories cannot be null" when trying to update a product category with PUT request.
+- Postman: "Error 500" when trying to delete a product by ID.
+
 #### NOTE:
 
 The Order entity seems different from the Product entity. It should be reviewed.
