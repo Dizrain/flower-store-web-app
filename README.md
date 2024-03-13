@@ -6,6 +6,8 @@
 #### NOTE:
 The Order entity seems different from the Product entity. It should be reviewed.
 
+### Project description for ChatGPT:
+
 The simple flower store web application, the domain-driven design (DDD) can be segmented into several subdomains, each handling a specific aspect of the flower store's operation. Below are the subdomains with explanations and examples of how they might be structured within the project. Keep in mind, the core domain is the primary focus of the business that provides competitive advantage, while supporting subdomains are necessary for the business to operate but are not the primary focus.
 Core Domain: Product Management (Catalog)
 Description: The Product Management (or Catalog) subdomain is central to a flower store, involving the management of flower inventory, categories, and product details. This includes information about flower types, arrangements, prices, descriptions, and images.
