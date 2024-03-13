@@ -64,12 +64,12 @@ public class ProductServiceImpl implements ProductService {
         // Fetch and update the category
         Category category = categoryRepository.findById(updatedProductModel.getCategoryId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid category ID"));
-        foundProduct.setCategory(category);
 
         // Map updated properties from the request model to the found product
         // Assuming your ProductRequestMapper has logic to map other updatable fields
         Product updatedProduct = productRequestMapper.requestModelToEntity(updatedProductModel, foundProduct.getProductIdentifier());
         updatedProduct.setId(foundProduct.getId()); // Ensure the ID is preserved
+        updatedProduct.setCategory(category);
 
         Product savedProduct = productRepository.save(updatedProduct);
         return productResponseMapper.entityToResponseModel(savedProduct);
