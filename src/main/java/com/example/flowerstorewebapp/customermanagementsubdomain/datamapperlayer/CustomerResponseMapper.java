@@ -1,20 +1,29 @@
 package com.example.flowerstorewebapp.customermanagementsubdomain.datamapperlayer;
 
 import com.example.flowerstorewebapp.customermanagementsubdomain.datalayer.Customer;
+import com.example.flowerstorewebapp.customermanagementsubdomain.presentationlayer.CustomerController;
 import com.example.flowerstorewebapp.customermanagementsubdomain.presentationlayer.CustomerResponseModel;
-import com.example.flowerstorewebapp.orderprocessingsubdomain.presentationlayer.OrderResponseModel;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.springframework.hateoas.RepresentationModel;
+import org.mapstruct.*;
+import org.springframework.hateoas.Link;
 
 import java.util.List;
 
-// TODO: Verify if this response mapper is complete since the product mapper seems to have more information.
-@Mapper(componentModel = "spring")
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+@Mapper(componentModel = "spring", builder = @Builder(disableBuilder = true))
 public interface CustomerResponseMapper {
 
     @Mapping(expression = "java(customer.getCustomerIdentifier().getCustomerId())", target = "customerId")
     CustomerResponseModel entityToResponseModel(Customer customer);
 
     List<CustomerResponseModel> entityListToResponseModelList(List<Customer> customers);
+
+    @AfterMapping
+    default void addLinks(Customer customer, @MappingTarget CustomerResponseModel model){
+        Link selfLink= linkTo(methodOn(CustomerController.class)
+                .getCustomerById(model.getCustomerId()))
+                .withSelfRel();
+        model.add(selfLink);
+    }
 }
