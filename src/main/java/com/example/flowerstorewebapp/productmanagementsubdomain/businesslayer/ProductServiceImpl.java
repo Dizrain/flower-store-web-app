@@ -6,6 +6,7 @@ import com.example.flowerstorewebapp.productmanagementsubdomain.datamapperlayer.
 import com.example.flowerstorewebapp.productmanagementsubdomain.presentationlayer.ProductRequestModel;
 import com.example.flowerstorewebapp.productmanagementsubdomain.presentationlayer.ProductResponseModel;
 import com.example.flowerstorewebapp.utils.exceptions.NotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,8 +77,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void removeProduct(String productId) {
-        Long id = Long.parseLong(productId);
-        productRepository.deleteById(id);
+        productRepository.deleteByProductIdentifier_ProductId(productId);
     }
 
     @Override

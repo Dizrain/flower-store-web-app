@@ -3,6 +3,7 @@ package com.example.flowerstorewebapp.productmanagementsubdomain.presentationlay
 import com.example.flowerstorewebapp.productmanagementsubdomain.businesslayer.ProductService;
 import com.example.flowerstorewebapp.productmanagementsubdomain.presentationlayer.ProductResponseModel;
 import com.example.flowerstorewebapp.productmanagementsubdomain.presentationlayer.ProductRequestModel;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
