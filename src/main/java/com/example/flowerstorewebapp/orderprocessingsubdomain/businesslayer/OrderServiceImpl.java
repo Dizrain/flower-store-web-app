@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponseModel getOrderById(String orderId) {
-        Order order = orderRepository.findById(orderId)
+        Order order = orderRepository.findOrderByOrderIdentifier_OrderId(orderId)
                 .orElseThrow(() -> new NotFoundException("Order not found with id " + orderId));
         return orderResponseMapper.entityToResponseModel(order);
     }
