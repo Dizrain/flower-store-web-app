@@ -1,6 +1,7 @@
 package com.example.flowerstorewebapp.orderprocessingsubdomain.datalayer;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -58,12 +59,13 @@ public class Order {
         @Column(name = "product_id", nullable = false)
         private String productId; // References the product
 
-        @NotNull(message = "Quantity cannot be null")
+        // Minimum quantity is 1
+        @Min(value = 1, message = "Quantity must be greater than 0")
         @Column(nullable = false)
         private int quantity; // Quantity of the product ordered
 
-        @NotNull(message = "Price per item cannot be null")
         // Assuming price is tracked at the order item level to account for price changes over time
+        @Min(value = 0, message = "Price per item must be greater than or equal to 0")
         @Column(nullable = false)
         private double pricePerItem;
     }

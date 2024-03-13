@@ -23,5 +23,6 @@ public class OrderRequestModel {
     public static class OrderItemModel {
         String productId;
         int quantity;
+        double pricePerItem;
     }
 }
