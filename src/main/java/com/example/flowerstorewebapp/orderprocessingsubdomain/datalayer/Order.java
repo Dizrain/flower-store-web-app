@@ -1,6 +1,8 @@
 package com.example.flowerstorewebapp.orderprocessingsubdomain.datalayer;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,19 +21,24 @@ public class Order {
     @Embedded
     private OrderIdentifier orderIdentifier; // Public identifier
 
+    @NotBlank(message = "Customer ID cannot be blank")
     @Column(name = "customer_id", nullable = false)
     private String customerId; // References the customer who placed the order
 
+    @NotNull(message = "Items cannot be null")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "order_id") // This column is in the order_items table
     private List<OrderItem> items; // List of items in the order
 
+    @NotBlank(message = "Shipping address cannot be blank")
     @Column(name = "shipping_address", nullable = false)
     private String shippingAddress; // Shipping address for the order
 
+    @NotBlank(message = "Billing information cannot be blank")
     @Column(name = "billing_information", nullable = false)
     private String billingInformation; // Billing information for the order
 
+    @NotNull(message = "Order status cannot be null")
     @Enumerated(EnumType.STRING) // This annotation is used to store the enum values as String
     @Column(nullable = false)
     private OrderStatus status;
@@ -47,12 +54,15 @@ public class Order {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id; // Private identifier for the order item
 
+        @NotBlank(message = "Product ID cannot be blank")
         @Column(name = "product_id", nullable = false)
         private String productId; // References the product
 
+        @NotNull(message = "Quantity cannot be null")
         @Column(nullable = false)
         private int quantity; // Quantity of the product ordered
 
+        @NotNull(message = "Price per item cannot be null")
         // Assuming price is tracked at the order item level to account for price changes over time
         @Column(nullable = false)
         private double pricePerItem;
