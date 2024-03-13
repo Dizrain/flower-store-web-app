@@ -51,6 +51,7 @@ CREATE TABLE order_items
 CREATE TABLE orders
 (
     id                  BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id            VARCHAR(255) NOT NULL,
     billing_information VARCHAR(255) NOT NULL,
     customer_id         VARCHAR(255) NOT NULL,
     shipping_address    VARCHAR(255) NOT NULL,
