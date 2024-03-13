@@ -15,8 +15,10 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Mapper(componentModel = "spring", builder = @Builder(disableBuilder = true))
 public interface ProductResponseMapper {
 
+    @Mapping(target = "categoryId", source = "category.id")
+    @Mapping(target = "categoryName", source = "category.name")
     @Mapping(expression = "java(product.getProductIdentifier().getProductId())", target = "productId")
-ProductResponseModel entityToResponseModel(Product product);
+    ProductResponseModel entityToResponseModel(Product product);
 
     List<ProductResponseModel> entityListToResponseModelList(List<Product> products);
 

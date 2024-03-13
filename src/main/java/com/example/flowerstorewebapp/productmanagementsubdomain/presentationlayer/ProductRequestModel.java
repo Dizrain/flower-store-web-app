@@ -1,5 +1,6 @@
 package com.example.flowerstorewebapp.productmanagementsubdomain.presentationlayer;
 
+import com.example.flowerstorewebapp.productmanagementsubdomain.datalayer.Category;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +15,7 @@ public class ProductRequestModel {
 
     String name;
     String description;
-    String categoryId; // Assuming category is referenced by ID
-    String category;
+    Long categoryId;
+    Category category;
     BigDecimal price; // Assuming price as a simple numeric value for this example
 }

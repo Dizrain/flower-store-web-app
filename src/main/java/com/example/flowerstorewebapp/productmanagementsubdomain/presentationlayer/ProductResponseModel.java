@@ -12,6 +12,7 @@ public class ProductResponseModel extends RepresentationModel<ProductResponseMod
     String productId;
     String name;
     String description;
-    String category; // Assuming we want to send back the category name
+    Long categoryId;
+    String categoryName;
     double price;
 }

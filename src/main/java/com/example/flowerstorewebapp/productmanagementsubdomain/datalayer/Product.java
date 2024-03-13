@@ -31,12 +31,9 @@ public class Product {
     @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
     private BigDecimal price;
 
-    @NotBlank(message = "Category cannot be blank")
-    private String category;
+    @NotNull(message = "Category cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
-    // If your application involves more complex category management, consider replacing the String category with a Category entity
-    // @ManyToOne
-    // @JoinColumn(name = "category_id", referencedColumnName = "id")
-    // private Category category;
-    // TODO: Category could be a separate entity (enum) that will support a limited amount of categories
 }

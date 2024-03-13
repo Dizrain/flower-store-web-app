@@ -1,5 +1,6 @@
 package com.example.flowerstorewebapp.productmanagementsubdomain.businesslayer;
 
+import com.example.flowerstorewebapp.productmanagementsubdomain.datalayer.Category;
 import com.example.flowerstorewebapp.productmanagementsubdomain.datalayer.Product;
 import com.example.flowerstorewebapp.productmanagementsubdomain.presentationlayer.ProductRequestModel;
 import com.example.flowerstorewebapp.productmanagementsubdomain.presentationlayer.ProductResponseModel;
@@ -43,9 +44,9 @@ public interface ProductService {
     void removeProduct(String productId);
 
     /**
-     * Retrieves products filtered by category.
-     * @param category the category to filter by.
-     * @return a list of ProductResponseModel matching the specified category.
+     * Retrieves products filtered by category ID.
+     * @param categoryId the ID of the category to filter by.
+     * @return a list of ProductResponseModel matching the specified category ID.
      */
-    List<ProductResponseModel> getProductsByCategory(String category);
+    List<ProductResponseModel> getProductsByCategory(Long categoryId);
 }

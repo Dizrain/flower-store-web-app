@@ -69,7 +69,7 @@ public class InventoryServiceImpl implements InventoryService {
         StockItem stockItem = stockItemRepository.findByProductId(productId).orElseThrow(() -> new NotFoundException("Stock item not found for product id " + productId));
         // Logic to reorder stock. This could involve updating the stock level and possibly creating a new order to the supplier.
         // For the sake of this example, let's assume we just update the stock level.
-        stockItem.setStockLevel(stockItem.getStockLevel() + 100); // Reorder amount example
+        stockItem.setStockLevel(stockItem.getStockLevel() + 10); // Reorder amount example
         StockItem savedStockItem = stockItemRepository.save(stockItem);
         return stockItemResponseMapper.entityToResponseModel(savedStockItem);
     }
