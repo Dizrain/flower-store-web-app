@@ -55,6 +55,7 @@ public class InventoryServiceImpl implements InventoryService {
 
         StockItem updatedStockItem = stockItemRequestMapper.requestModelToEntity(updatedStockItemModel, foundStockItem.getStockItemIdentifier());
         updatedStockItem.setId(foundStockItem.getId()); // Ensure the correct ID is set
+        updatedStockItem.setProductId(productId); // Ensure the correct product ID is set
 
         StockItem savedStockItem = stockItemRepository.save(updatedStockItem);
         return stockItemResponseMapper.entityToResponseModel(savedStockItem);
