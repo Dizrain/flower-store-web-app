@@ -32,8 +32,9 @@ public class Order {
     @Column(name = "billing_information", nullable = false)
     private String billingInformation; // Billing information for the order
 
+    @Enumerated(EnumType.STRING) // This annotation is used to store the enum values as String
     @Column(nullable = false)
-    private String status; // Status of the order (e.g., "Placed", "Shipped", "Delivered", "Cancelled")
+    private OrderStatus status;
 
     // Nested OrderItem class
     @Entity

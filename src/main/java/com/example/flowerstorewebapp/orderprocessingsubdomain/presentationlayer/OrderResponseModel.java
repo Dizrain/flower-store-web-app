@@ -16,7 +16,7 @@ public class OrderResponseModel extends RepresentationModel<OrderResponseModel> 
     List<OrderItemModel> items; // Similar to the request model, using an inner class for items
     String shippingAddress;
     String billingInformation;
-    String status; // Example status values: "Placed", "Shipped", "Delivered", "Cancelled"
+    String status;
 
     @Data
     @Builder

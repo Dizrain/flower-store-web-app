@@ -18,6 +18,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public interface OrderResponseMapper {
 
     @Mapping(expression = "java(order.getOrderIdentifier().getOrderId())", target = "orderId")
+    @Mapping(target = "status", expression = "java(order.getStatus().name())") // Map the enum to a string
     OrderResponseModel entityToResponseModel(Order order);
 
     List<OrderResponseModel> entityListToResponseModelList(List<Order> orders);

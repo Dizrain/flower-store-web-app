@@ -3,6 +3,7 @@ package com.example.flowerstorewebapp.orderprocessingsubdomain.businesslayer;
 import com.example.flowerstorewebapp.orderprocessingsubdomain.datalayer.Order;
 import com.example.flowerstorewebapp.orderprocessingsubdomain.datalayer.OrderIdentifier;
 import com.example.flowerstorewebapp.orderprocessingsubdomain.datalayer.OrderRepository;
+import com.example.flowerstorewebapp.orderprocessingsubdomain.datalayer.OrderStatus;
 import com.example.flowerstorewebapp.orderprocessingsubdomain.datamapperlayer.OrderRequestMapper;
 import com.example.flowerstorewebapp.orderprocessingsubdomain.datamapperlayer.OrderResponseMapper;
 import com.example.flowerstorewebapp.orderprocessingsubdomain.presentationlayer.OrderRequestModel;
@@ -44,8 +45,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponseModel createOrder(OrderRequestModel orderRequestModel) {
-        // Here, we would ideally check that the orderRequestModel contains at least one order item
         Order order = orderRequestMapper.requestModelToEntity(orderRequestModel, new OrderIdentifier());
+        order.setStatus(OrderStatus.PLACED); // Set initial status
         Order savedOrder = orderRepository.save(order);
         return orderResponseMapper.entityToResponseModel(savedOrder);
     }
@@ -62,9 +63,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void cancelOrder(String orderId) {
         Order order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new NotFoundException("Order not found with id " + orderId));
-        // Implement logic to cancel the order, potentially updating its status rather than deleting
-        orderRepository.delete(order);
+                .orElseThrow(() -> new NotFoundException("Order not found with id: " + orderId));
+        order.setStatus(OrderStatus.CANCELLED); // Update status instead of deleting
+        orderRepository.save(order); // Save the updated order
     }
 
     @Override
