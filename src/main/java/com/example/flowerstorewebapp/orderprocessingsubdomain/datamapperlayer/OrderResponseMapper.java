@@ -3,10 +3,7 @@ package com.example.flowerstorewebapp.orderprocessingsubdomain.datamapperlayer;
 import com.example.flowerstorewebapp.orderprocessingsubdomain.datalayer.Order;
 import com.example.flowerstorewebapp.orderprocessingsubdomain.presentationlayer.OrderController;
 import com.example.flowerstorewebapp.orderprocessingsubdomain.presentationlayer.OrderResponseModel;
-import org.mapstruct.AfterMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 import org.springframework.hateoas.Link;
 
 import java.util.List;
@@ -14,11 +11,12 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", builder = @Builder(disableBuilder = true))
 public interface OrderResponseMapper {
 
     @Mapping(expression = "java(order.getOrderIdentifier().getOrderId())", target = "orderId")
-    @Mapping(target = "status", expression = "java(order.getStatus().name())") // Map the enum to a string
+    @Mapping(target = "status", expression = "java(order.getStatus().name())")
+    // Map the enum to a string
     OrderResponseModel entityToResponseModel(Order order);
 
     List<OrderResponseModel> entityListToResponseModelList(List<Order> orders);
@@ -29,7 +27,7 @@ public interface OrderResponseMapper {
         model.add(selfLink);
 
         // Example to add more links, adjust according to your API design
-        // Link cancelLink = linkTo(methodOn(OrderController.class).cancelOrder(model.getOrderId())).withRel("cancelOrder");
-        // model.add(cancelLink);
+        Link cancelLink = linkTo(methodOn(OrderController.class).cancelOrder(model.getOrderId())).withRel("cancelOrder");
+        model.add(cancelLink);
     }
 }
