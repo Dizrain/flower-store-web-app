@@ -1,6 +1,7 @@
 package com.example.flowerstorewebapp.inventorymanagementsubdomain.businesslayer;
 
 import com.example.flowerstorewebapp.inventorymanagementsubdomain.datalayer.StockItem;
+import com.example.flowerstorewebapp.inventorymanagementsubdomain.datalayer.StockItemIdentifier;
 import com.example.flowerstorewebapp.inventorymanagementsubdomain.datalayer.StockItemRepository;
 import com.example.flowerstorewebapp.inventorymanagementsubdomain.datamapperlayer.StockItemRequestMapper;
 import com.example.flowerstorewebapp.inventorymanagementsubdomain.datamapperlayer.StockItemResponseMapper;
@@ -43,7 +44,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public StockItemResponseModel addStockItem(StockItemRequestModel stockItemRequestModel) {
-        StockItem stockItem = stockItemRequestMapper.requestModelToEntity(stockItemRequestModel);
+        StockItem stockItem = stockItemRequestMapper.requestModelToEntity(stockItemRequestModel, new StockItemIdentifier());
         StockItem savedStockItem = stockItemRepository.save(stockItem);
         return stockItemResponseMapper.entityToResponseModel(savedStockItem);
     }
@@ -52,7 +53,7 @@ public class InventoryServiceImpl implements InventoryService {
     public StockItemResponseModel updateStockItem(StockItemRequestModel updatedStockItemModel, String productId) {
         StockItem foundStockItem = stockItemRepository.findByProductId(productId).orElseThrow(() -> new NotFoundException("Stock item not found for product id " + productId));
 
-        StockItem updatedStockItem = stockItemRequestMapper.requestModelToEntity(updatedStockItemModel);
+        StockItem updatedStockItem = stockItemRequestMapper.requestModelToEntity(updatedStockItemModel, foundStockItem.getStockItemIdentifier());
         updatedStockItem.setId(foundStockItem.getId()); // Ensure the correct ID is set
 
         StockItem savedStockItem = stockItemRepository.save(updatedStockItem);
