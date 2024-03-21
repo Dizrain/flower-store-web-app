@@ -1,10 +1,6 @@
 package com.example.flowerstorewebapp.productmanagementsubdomain.datalayer;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +15,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Embedded
+    private CategoryIdentifier categoryIdentifier;
+
+    @Column(unique = true)
     @NotBlank(message = "Category name cannot be blank")
     private String name;
 }

@@ -3,11 +3,13 @@ package com.example.flowerstorewebapp.productmanagementsubdomain.datalayer;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "products") // Explicitly name the table
@@ -23,6 +25,7 @@ public class Product {
     private ProductIdentifier productIdentifier; // Public identifier
 
     @NotBlank(message = "Product name cannot be blank")
+    @Column(unique = true)
     private String name;
 
     private String description;
@@ -31,9 +34,11 @@ public class Product {
     @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
     private BigDecimal price;
 
-    @NotNull(message = "Category cannot be null")
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category category;
-
+    @NotEmpty(message = "Product must have at least one category")
+    @ManyToMany
+    @JoinTable(
+            name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 }

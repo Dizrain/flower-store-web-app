@@ -11,19 +11,6 @@ VALUES (UUID(), 'Alice Brown', 'alice.brown@example.com', '555-0101', '123 Maple
        (UUID(), 'Isla Young', 'isla.young@example.com', '555-0109', '456 Cherry Street'),
        (UUID(), 'Jack King', 'jack.king@example.com', '555-0110', '789 Elm Street');
 
--- Inserting categories into categories table
-INSERT INTO categories (name)
-VALUES ('Roses'),
-       ('Tulips'),
-       ('Daisies'),
-       ('Orchids'),
-       ('Sunflowers'),
-       ('Lilies'),
-       ('Carnations'),
-       ('Hyacinths'),
-       ('Chrysanthemums'),
-       ('Peonies');
-
 -- Inserting sample data into orders
 INSERT INTO orders (order_id, billing_information, customer_id, shipping_address, status)
 VALUES (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Alice Brown'), '123 Maple Street', 'SHIPPED'),
@@ -37,19 +24,44 @@ VALUES (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE
        (UUID(), 'Paid via Credit Card', (SELECT customer_id FROM customers WHERE name = 'Isla Young'), '456 Cherry Street', 'SHIPPED'),
        (UUID(), 'Paid via PayPal', (SELECT customer_id FROM customers WHERE name = 'Jack King'), '789 Elm Street', 'PLACED');
 
--- Inserting sample data into products with category_id references
-INSERT INTO products (product_id, name, description, price, category_id)
-VALUES (UUID(), 'Rose', 'Elegant Red Rose', 10.00, (SELECT id FROM categories WHERE name = 'Roses')),
-       (UUID(), 'Tulip', 'Bright Yellow Tulip', 8.50, (SELECT id FROM categories WHERE name = 'Tulips')),
-       (UUID(), 'Daisy', 'Charming White Daisy', 5.00, (SELECT id FROM categories WHERE name = 'Daisies')),
-       (UUID(), 'Orchid', 'Exotic Purple Orchid', 15.00, (SELECT id FROM categories WHERE name = 'Orchids')),
-       (UUID(), 'Sunflower', 'Vibrant Sunflower', 7.00, (SELECT id FROM categories WHERE name = 'Sunflowers')),
-       (UUID(), 'Lily', 'Serenic White Lily', 12.00, (SELECT id FROM categories WHERE name = 'Lilies')),
-       (UUID(), 'Carnation', 'Delicate Pink Carnation', 6.50, (SELECT id FROM categories WHERE name = 'Carnations')),
-       (UUID(), 'Hyacinth', 'Fragrant Blue Hyacinth', 9.00, (SELECT id FROM categories WHERE name = 'Hyacinths')),
-       (UUID(), 'Chrysanthemum', 'Versatile Chrysanthemum', 8.00,
-        (SELECT id FROM categories WHERE name = 'Chrysanthemums')),
-       (UUID(), 'Peony', 'Lush Peony', 11.00, (SELECT id FROM categories WHERE name = 'Peonies'));
+-- Inserting categories into categories table
+INSERT INTO categories (category_id, name)
+VALUES (UUID(), 'Roses'),
+       (UUID(), 'Tulips'),
+       (UUID(), 'Daisies'),
+       (UUID(), 'Orchids'),
+       (UUID(), 'Sunflowers'),
+       (UUID(), 'Lilies'),
+       (UUID(), 'Carnations'),
+       (UUID(), 'Hyacinths'),
+       (UUID(), 'Chrysanthemums'),
+       (UUID(), 'Peonies');
+
+-- Inserting sample data into products without category_id references
+INSERT INTO products (product_id, name, description, price)
+VALUES (UUID(), 'Rose', 'Elegant Red Rose', 10.00),
+       (UUID(), 'Tulip', 'Bright Yellow Tulip', 8.50),
+       (UUID(), 'Daisy', 'Charming White Daisy', 5.00),
+       (UUID(), 'Orchid', 'Exotic Purple Orchid', 15.00),
+       (UUID(), 'Sunflower', 'Vibrant Sunflower', 7.00),
+       (UUID(), 'Lily', 'Serenic White Lily', 12.00),
+       (UUID(), 'Carnation', 'Delicate Pink Carnation', 6.50),
+       (UUID(), 'Hyacinth', 'Fragrant Blue Hyacinth', 9.00),
+       (UUID(), 'Chrysanthemum', 'Versatile Chrysanthemum', 8.00),
+       (UUID(), 'Peony', 'Lush Peony', 11.00);
+
+-- Inserting sample data into product_category join table
+INSERT INTO product_category (product_id, category_id)
+VALUES ((SELECT id FROM products WHERE name = 'Rose'), (SELECT id FROM categories WHERE name = 'Roses')),
+       ((SELECT id FROM products WHERE name = 'Tulip'), (SELECT id FROM categories WHERE name = 'Tulips')),
+       ((SELECT id FROM products WHERE name = 'Daisy'), (SELECT id FROM categories WHERE name = 'Daisies')),
+       ((SELECT id FROM products WHERE name = 'Orchid'), (SELECT id FROM categories WHERE name = 'Orchids')),
+       ((SELECT id FROM products WHERE name = 'Sunflower'), (SELECT id FROM categories WHERE name = 'Sunflowers')),
+       ((SELECT id FROM products WHERE name = 'Lily'), (SELECT id FROM categories WHERE name = 'Lilies')),
+       ((SELECT id FROM products WHERE name = 'Carnation'), (SELECT id FROM categories WHERE name = 'Carnations')),
+       ((SELECT id FROM products WHERE name = 'Hyacinth'), (SELECT id FROM categories WHERE name = 'Hyacinths')),
+       ((SELECT id FROM products WHERE name = 'Chrysanthemum'), (SELECT id FROM categories WHERE name = 'Chrysanthemums')),
+       ((SELECT id FROM products WHERE name = 'Peony'), (SELECT id FROM categories WHERE name = 'Peonies'));
 
 -- Inserting sample data into order_items
 INSERT INTO order_items (price_per_item, quantity, order_id, product_id)

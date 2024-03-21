@@ -10,6 +10,6 @@ import org.mapstruct.Mapping;
 public interface ProductRequestMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "category", ignore = true)
+    @Mapping(target = "categories", ignore = true)
     Product requestModelToEntity(ProductRequestModel productRequestModel, ProductIdentifier productIdentifier);
 }
